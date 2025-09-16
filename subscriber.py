@@ -1,6 +1,7 @@
 from awscrt import io, mqtt
 from awsiot import mqtt_connection_builder
 import subprocess
+import time
 from datetime import datetime
 
 ruta = "/home/Cesarin/log_script.txt"
