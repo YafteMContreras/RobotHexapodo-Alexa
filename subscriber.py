@@ -46,11 +46,14 @@ connected = False
 while not connected:
         try:
                 print("Conectando a AWS IoT Core...")
+		escribir_log(f"Intentando conexión a AWS")
                 mqtt_connection.connect().result()
                 print("Conexión exitosa")
+		escribir_log(f"Conexion a AWS exitosa")
                 connected = True
         except Exception as e:
                 print(f"Error de conexión: {e}")
+		escribir_log(f"Error de conexion a AWS")
                 time.sleep(5)
 
 # Intentar suscripción al tema MQTT con reintentos
@@ -58,18 +61,21 @@ subscribed = False
 while not subscribed:
         try:
                 print("Suscribiendose a robot/control...")
+		escribir_log(f"Intentando suscripción a robot/control")
                 mqtt_connection.subscribe(
                         topic="robot/control",
                         qos=mqtt.QoS.AT_LEAST_ONCE,
                         callback=on_message_received
                 ).result()
                 print("Suscripción exitosa")
+		escribir_log(f"Suscripción exitosa")
                 mensaje = f"El programa se ha ejecutado con éxito: [{fecha_actual}]\n"
                 with open(ruta, "a") as archivo:
                         archivo.write(mensaje)
                 subscribed = True
         except Exception as e:
                 print(f"Error de suscripción: {e}")
+		escribir_log(f"Error de suscripción")
                 time.sleep(5)
 
 # Mantén el script en ejecución
