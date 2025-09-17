@@ -66,7 +66,7 @@ while not subscribed:
                         topic="robot/control",
                         qos=mqtt.QoS.AT_LEAST_ONCE,
                         callback=on_message_received
-                ).result()
+                )
                 print("Suscripción exitosa")
                 escribir_log(f"Suscripción exitosa")
                 mensaje = f"El programa se ha ejecutado con éxito: [{fecha_actual}]\n"
