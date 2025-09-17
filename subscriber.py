@@ -69,9 +69,7 @@ while not subscribed:
                 )
                 print("Suscripción exitosa")
                 escribir_log(f"Suscripción exitosa")
-                mensaje = f"El programa se ha ejecutado con éxito: [{fecha_actual}]\n"
-                with open(ruta, "a") as archivo:
-                        archivo.write(mensaje)
+                escribir_log( f"El programa se ha ejecutado con éxito")
                 subscribed = True
         except Exception as e:
                 print(f"Error de suscripción: {e}")
